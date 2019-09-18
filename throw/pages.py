@@ -15,11 +15,9 @@ class GeneralSlider(Page):
         return self.round_number == self.participant.vars['task_rounds'][self.order_id]
 
     def before_next_page(self):
-        old_pvars = self.participant.vars
-        f_update = {self.form_field: getattr(self.player, self.form_field)}
-        old_pvars.update(f_update)
-        self.participant.vars = old_pvars
+        self.participant.vars[self.form_field] = getattr(self.player, self.form_field)
         self.player.dump_participant_vars = str(self.participant.vars)
+
 
 
 class SliderPage1(GeneralSlider):
