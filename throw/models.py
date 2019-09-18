@@ -21,9 +21,8 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             for p in self.get_players():
                 round_numbers = list(range(1, Constants.num_rounds + 1))
-                tasks = round_numbers.copy()
                 random.shuffle(round_numbers)
-                p.participant.vars['task_rounds'] = dict(zip(tasks, round_numbers))
+                p.participant.vars['task_rounds'] = dict(enumerate(round_numbers, start=1))
                 p.dump_order = str(p.participant.vars['task_rounds'])
 
 
